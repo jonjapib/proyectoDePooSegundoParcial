@@ -58,7 +58,50 @@ public class Premio {
     public void setIdConcurso(Concurso idConcurso) {
         this.idConcurso = idConcurso;
     }
+public static Premio nextPremio(Scanner sc){
+        System.out.println("Ingrese cantidad de premios: ");
+        sc.useDelimiter("\n");
+        sc.nextLine();
+        int cantidad = sc.nextInt();
+        
+        System.out.println("Ingresedescripcion concurso: ");
+        String d = sc.nextLine();
+        System.out.println("Ingrese nombre concurso: ");
+        String n = sc.nextLine();
+        
+        
+        return new Premio(Util.nextID("premios.txt"),);
+        
+    }
+    
+     public void saveFile(String nomfile){
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true))){
+           
+           pw.println(this.id+"|"+this.lugar+"|"+this.descripcion+"|"+this.idConcurso);
+       }
+       
+       catch(Exception e){
+           System.out.println(e.getMessage());
+       }
+   }
 
+      public static ArrayList<Premio> readFile(String nomfile){
+
+       ArrayList<Premio> premios = new ArrayList<>();
+       try(Scanner sc = new Scanner(new File(nomfile))){
+           while(sc.hasNextLine()){
+               String linea = sc.nextLine();
+               String[] tokens = linea.split("\\|");
+               Concurso c = new Concurso(Integer.parseInt(tokens[0]),tokens[1],LocalDate.parse(tokens[2]),LocalDate.parse(tokens[3]),LocalDate.parse(tokens[4]),tokens[5],Double.parseDouble(tokens[6]));              
+               premios.add(c);
+           }
+           
+       }
+       catch(Exception e){
+           System.out.println(e.getMessage());
+       }
+       return premios; 
+    }
    
 
     @Override
