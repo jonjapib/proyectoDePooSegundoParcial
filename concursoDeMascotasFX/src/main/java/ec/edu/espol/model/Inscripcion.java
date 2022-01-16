@@ -119,17 +119,18 @@ public class Inscripcion {
     
     //Método nextInscripcion
     public static Inscripcion nextInscripcion(Scanner sc){
-      //  SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         
         System.out.println("Nombre de la mascota: ");
-        String nombre = sc.nextLine();
+        String nombre = sc.next();
         sc.nextLine();
         System.out.println("Nombre de Concurso: ");
-        String nombreConcurso = sc.nextLine();
+        String nombreConcurso = sc.next();
         System.out.println("Valor a pagar por la inscripción: ");
         double pagoInscripcion = sc.nextDouble();
-        System.out.println("Fecha de la inscripción: ");
-        String fechaInscripcion = sc.nextLine();
+        System.out.println("Fecha de la inscripción (yyyy-mm-dd): ");
+        String fechaInscripcion = sc.next().toString();
+        System.out.println(fechaInscripcion);
         LocalDate fecha_Inscripcion = LocalDate.parse(fechaInscripcion);
         // Descuento
         
@@ -165,7 +166,7 @@ public class Inscripcion {
     public void saveFile(String nomfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true))){
            
-           pw.println(this.id+"|"+this.idMascota+"|"+this.mascota+"|"+this.idConcurso+"|"+this.valor);
+           pw.println(this.id+"|"+this.nMascota+"|"+this.nConcurso+"|"+this.valor+"|"+this.fechaIns);
        }
        
        catch(Exception e){

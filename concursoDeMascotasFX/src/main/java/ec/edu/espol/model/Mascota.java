@@ -131,6 +131,7 @@ public class Mascota {
         Dueño duenio = null;
         System.out.println("Ingrese Nombre: ");
         String nameM = sc.nextLine();
+        sc.nextLine();
         System.out.println("Ingrese Raza: ");
         String razaM = sc.nextLine();
         System.out.println("Ingrese Fecha de Nacimiento(yyyy-mm-dd): ");

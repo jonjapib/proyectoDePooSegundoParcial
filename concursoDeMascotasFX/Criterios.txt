@@ -1,0 +1,17 @@
+1|originalidad de fotografia|fotos y mascotas
+2|angulo|fotos y mascotas
+3|tonalidad|fotos y mascotas
+4|originalidad del disfaz|mascotas y disfraces
+5|ternura|mascotas y disfraces
+6|j|0
+7|hjhjhj|2
+8|aaa|4
+9|bbb|2
+10|ccc|2
+11|aaaa|4
+12|bbbb|3
+13|cccc|2
+14|aaaaa|1
+15|ffff|2
+16|llll|1
+17|d|0

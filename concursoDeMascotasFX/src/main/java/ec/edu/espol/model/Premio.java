@@ -23,24 +23,17 @@ public class Premio {
     private int id;
     private int lugar;
     private String descripcion;
-    private Concurso idConcurso;
+    private int idConcurso;
+    private Concurso j;
     
     //Constructor
 
-    public Premio(int id, int lugar, String descripcion, Concurso idConcurso) {
+    public Premio(int id, int lugar, String descripcion, int idConcurso) {
         this.id = id;
         this.lugar = lugar;
         this.descripcion = descripcion;
         this.idConcurso = idConcurso;
     }
-
-    private Premio(int nextID, int lugar, String descripcion, int id) {
-        this.id = id;
-        this.lugar = lugar;
-        this.descripcion = descripcion;
-       
-    }
-    
 
     public int getId() {
         return id;
@@ -66,26 +59,42 @@ public class Premio {
         this.descripcion = descripcion;
     }
 
-    public Concurso getIdConcurso() {
+    public int getIdConcurso() {
         return idConcurso;
     }
 
-    public void setIdConcurso(Concurso idConcurso) {
+    public void setIdConcurso(int idConcurso) {
         this.idConcurso = idConcurso;
     }
+
+    public Concurso getJ() {
+        return j;
+    }
+
+    public void setJ(Concurso j) {
+        this.j = j;
+    }
+    
+    
 public static Premio nextPremio(Scanner sc){
     
         System.out.println("Ingrese descripcion concurso: ");
-        String descripcion = sc.nextLine();
+        String descripcion = sc.next();
         sc.nextLine();
-       // sc.useDelimiter("\n");
-        System.out.println("Ingrese id del concurso: ");
-        int id = sc.nextInt();
+       sc.useDelimiter("\n");
         System.out.println("Ingrese lugar del premio:");
         int lugar= sc.nextInt();
-        sc.useDelimiter("\n");
-        
-        return new Premio(Util.nextID("premios.txt"),lugar, descripcion, id );
+       // sc.useDelimiter("\n");
+       System.out.println("Ingrese el nombre del Concurso que pertenese el concurso:");
+       String nombreConcurso= sc.next();
+       int idMJ = 0;
+                ArrayList<Concurso> j = Concurso.readFile("concurso.txt");
+                 for(Concurso x: j){
+                      if(x.getNombre().equals(nombreConcurso)){
+                          idMJ = x.getId();
+                                         }
+                 }
+        return new Premio(Util.nextID("premios.txt"),lugar, descripcion, idMJ );
           }
     
      public void saveFile(String nomfile){
@@ -106,7 +115,7 @@ public static Premio nextPremio(Scanner sc){
            while(sc.hasNextLine()){
                String linea = sc.nextLine();
                String[] tokens = linea.split("\\|");
-               Premio c = new Premio(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),tokens[2],new Concurso(Integer.parseInt(tokens[0]),tokens[1],LocalDate.parse(tokens[2]),LocalDate.parse(tokens[3]),LocalDate.parse(tokens[4]),tokens[5],Double.parseDouble(tokens[6])));              
+               Premio c = new Premio(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),tokens[2],Integer.parseInt(tokens[3]));              
                premios.add(c);
            }
            

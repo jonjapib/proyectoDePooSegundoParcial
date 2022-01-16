@@ -23,9 +23,9 @@ public class Criterio {
     private String descripcion;
     private ArrayList<Evaluacion> evaluaciones;
     private int idConcurso;
-    private String concurso;
+    private int concurso;
 
-       public Criterio(int idCriterio, String descripcion,String concurso) {
+       public Criterio(int idCriterio, String descripcion, int concurso) {
         this.idCriterio = idCriterio;
         this.descripcion = descripcion;
         this.concurso=concurso;
@@ -39,14 +39,16 @@ public class Criterio {
     public void setIdConcurso(int idConcurso) {
         this.idConcurso = idConcurso;
     }
-    
-    public String getConcurso() {
+
+    public int getConcurso() {
         return concurso;
     }
 
-    public void setConcurso(String concurso) {
+    public void setConcurso(int concurso) {
         this.concurso = concurso;
     }
+    
+
 
     public int getIdCriterio() {
         return idCriterio;
@@ -102,26 +104,28 @@ public class Criterio {
             
          
           ArrayList<String> d = new ArrayList<>();
-                   for(Concurso c: Concurso.readFile("Concurso.txt")){
+             for(Concurso c: Concurso.readFile("Concurso.txt")){
             d.add(String.valueOf(c.getId()));
-                d.add(c.getNombre());     
+            d.add(c.getNombre());     
         } 
            sc.nextLine();
-          System.out.println(d);
+      
           System.out.println("Ingrese descripcion:");
             String descripcion=sc.nextLine();
             sc.useDelimiter("\n");
            
-                           
-            System.out.println("Ingrese el id de concurso para guardado:");
-            int id = sc.nextInt();
-            sc.useDelimiter("\n");
-     
-            
-      //    System.out.println(Concurso.readFile("Concurso.txt").get(id-1).getNombre());
-        
-            
-       Criterio criterio = new Criterio(Util.nextID("Criterios.txt"), descripcion, Concurso.readFile("Concurso.txt").get(id-1).getNombre() );
+       System.out.println("Ingrese el nombre del Concurso:");
+       System.out.println(d);
+       String nombreConcurso= sc.next();
+       int idP = 0;
+                ArrayList<Concurso> j = Concurso.readFile("concurso.txt");
+                 for(Concurso x: j){
+                      if(x.getNombre().equals(nombreConcurso)){
+                          idP = x.getId();
+                                         }
+                 }    
+                    
+       Criterio criterio = new Criterio(Util.nextID("Criterios.txt"), descripcion, idP );
     
         return criterio;
     
@@ -146,7 +150,7 @@ public class Criterio {
            while(sc.hasNextLine()){
               String linea=sc.nextLine();
               String[] tokens = linea.split("\\|");
-               Criterio vc =new Criterio(Integer.parseInt(tokens[0]),tokens[1],(tokens[0]));
+               Criterio vc =new Criterio(Integer.parseInt(tokens[0]),tokens[1],Integer.parseInt(tokens[2]));
               criterios.add(vc);
     }
        }

@@ -96,6 +96,7 @@ public class Dueño {
         int idD = Util.nextID("Dueño.txt");
         System.out.println("Ingrese Nombre: ");
         String nameD = sc.nextLine();
+        sc.nextLine();
         System.out.println("Ingrese Apellido: ");
         String lnameD = sc.nextLine();
         System.out.println("Ingrese Direccion: ");
