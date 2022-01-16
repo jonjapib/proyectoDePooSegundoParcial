@@ -1,5 +1,8 @@
 package ec.edu.espol.concursodemascotasfx;
 
+import ec.edu.espol.util.Menu;
+import static ec.edu.espol.util.Menu.imprimirMenu;
+import static ec.edu.espol.util.Menu.menu;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +35,11 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //launch();
+        while(true){
+        Menu.imprimirMenu();
+        Menu.menu();
+        }
     }
 
 }

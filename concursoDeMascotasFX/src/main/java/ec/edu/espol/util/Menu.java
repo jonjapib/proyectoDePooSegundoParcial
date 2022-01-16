@@ -12,6 +12,7 @@ import ec.edu.espol.model.Evaluacion;
 import ec.edu.espol.model.Inscripcion;
 import ec.edu.espol.model.Mascota;
 import ec.edu.espol.model.MiembroJurado;
+import ec.edu.espol.model.Premio;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -68,20 +69,36 @@ public class Menu {
                 System.out.println(listaConcurso);
                 break;
             case 4:
-                System.out.println("Ingrese numero de los premios: ");
+                int i = 1;
+               {
+                   int cantidad;
+                   System.out.println("Ingrese cantidad de premios: ");
+                   sc.useDelimiter("\n");
+                   cantidad = sc.nextInt();
+                   
+                   do{
+               System.out.println("ingrese premio:"+i);
+               Premio c= Premio.nextPremio(sc);
+               c.saveFile("Premio.txt");
+
+                       i=i+1;
+                   }while(i<=cantidad);
+               }
                 
                 break;
+
+
             case 5:
                 Scanner scNumero = new Scanner(System.in);
                 System.out.println("ingrese numero de criterios: ");
                 int numero=scNumero.nextInt();                
-               int i=0;
-               do{++i;
+               int j=0;
+               do{++j;
                System.out.println("ingrese criterio");
                Criterio c= Criterio.nextCriterio(sc);
                c.savefile("Criterios.txt");
                
-               } while(numero>0 && numero>i);  
+               } while(numero>0 && numero>j);  
                   ArrayList<Criterio> vcc = Criterio.readFile("Criterios.txt");
                System.out.println(vcc);           ;
 

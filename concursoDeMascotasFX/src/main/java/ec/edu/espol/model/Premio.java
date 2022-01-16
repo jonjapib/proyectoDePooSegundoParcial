@@ -5,7 +5,14 @@
  */
 package ec.edu.espol.model;
 
+import ec.edu.espol.util.Util;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 /**
  *
@@ -26,6 +33,14 @@ public class Premio {
         this.descripcion = descripcion;
         this.idConcurso = idConcurso;
     }
+
+    private Premio(int nextID, int lugar, String descripcion, int id) {
+        this.id = id;
+        this.lugar = lugar;
+        this.descripcion = descripcion;
+       
+    }
+    
 
     public int getId() {
         return id;
@@ -59,20 +74,19 @@ public class Premio {
         this.idConcurso = idConcurso;
     }
 public static Premio nextPremio(Scanner sc){
-        System.out.println("Ingrese cantidad de premios: ");
-        sc.useDelimiter("\n");
+    
+        System.out.println("Ingrese descripcion concurso: ");
+        String descripcion = sc.nextLine();
         sc.nextLine();
-        int cantidad = sc.nextInt();
+       // sc.useDelimiter("\n");
+        System.out.println("Ingrese id del concurso: ");
+        int id = sc.nextInt();
+        System.out.println("Ingrese lugar del premio:");
+        int lugar= sc.nextInt();
+        sc.useDelimiter("\n");
         
-        System.out.println("Ingresedescripcion concurso: ");
-        String d = sc.nextLine();
-        System.out.println("Ingrese nombre concurso: ");
-        String n = sc.nextLine();
-        
-        
-        return new Premio(Util.nextID("premios.txt"),);
-        
-    }
+        return new Premio(Util.nextID("premios.txt"),lugar, descripcion, id );
+          }
     
      public void saveFile(String nomfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true))){
@@ -92,7 +106,7 @@ public static Premio nextPremio(Scanner sc){
            while(sc.hasNextLine()){
                String linea = sc.nextLine();
                String[] tokens = linea.split("\\|");
-               Concurso c = new Concurso(Integer.parseInt(tokens[0]),tokens[1],LocalDate.parse(tokens[2]),LocalDate.parse(tokens[3]),LocalDate.parse(tokens[4]),tokens[5],Double.parseDouble(tokens[6]));              
+               Premio c = new Premio(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),tokens[2],new Concurso(Integer.parseInt(tokens[0]),tokens[1],LocalDate.parse(tokens[2]),LocalDate.parse(tokens[3]),LocalDate.parse(tokens[4]),tokens[5],Double.parseDouble(tokens[6])));              
                premios.add(c);
            }
            

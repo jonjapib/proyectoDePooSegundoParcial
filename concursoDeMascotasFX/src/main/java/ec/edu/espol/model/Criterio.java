@@ -115,7 +115,7 @@ public class Criterio {
                            
             System.out.println("Ingrese el id de concurso para guardado:");
             int id = sc.nextInt();
-            
+            sc.useDelimiter("\n");
      
             
       //    System.out.println(Concurso.readFile("Concurso.txt").get(id-1).getNombre());
