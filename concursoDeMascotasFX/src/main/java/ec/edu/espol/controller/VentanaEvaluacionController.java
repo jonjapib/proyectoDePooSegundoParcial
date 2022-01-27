@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Pibaque Ponce
  */
-public class VentanaController implements Initializable {
+public class VentanaEvaluacionController implements Initializable {
 
     /**
      * Initializes the controller class.
