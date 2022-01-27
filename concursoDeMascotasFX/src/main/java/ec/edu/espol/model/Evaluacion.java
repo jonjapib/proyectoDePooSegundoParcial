@@ -6,8 +6,12 @@
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -165,35 +169,60 @@ int idInscripcion = 0;
     }
    
     
- 
-   public void savefile(String File){
-  try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(File),true))){
-      
-   
-      pw.println(+this.id+"|"+this.emailJurado+"|"+this.inscripcion+"|"+this.idMiembroJurado+"|"+this.idCriterio+"|"+this.nota);
-      
-  }catch(Exception e){
-      System.out.println(e.getMessage());
+        
+    @Override
+              public String toString(){
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("Evaluacion{id=").append(id);
+        sb.append(", nota=").append(nota);
+        sb.append(", idInscripcion=").append(idInscripcion);
+        sb.append(", inscripcion=").append(inscripcion);
+        sb.append(", idMiembroJurado=").append(idMiembroJurado);
+        sb.append(", miembroJurado=").append(miembroJurado);
+        sb.append(", idCriterio=").append(idCriterio);
+        sb.append(", criterio=").append(criterio);
+        sb.append(", emailJurado=").append(emailJurado);
+        sb.append('}');
+        return sb.toString();
   }
-   
 
-  }
-  public static ArrayList<Evaluacion> readFile(String File){
+    public void saveFile(String file) {
+        try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
+                      
+            f.write(this.id+"|");
+            f.write(this.nota+"|");
+            f.write(this.idInscripcion+"|");
+            f.write(this.inscripcion+"|");
+            f.write(this.idMiembroJurado+"|");
+            f.write(this.idCriterio+"|");
+            f.write(this.criterio+"|");
+            f.write(this.emailJurado+"|");
+            f.newLine();
+   
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("no se pudo guardar el archivo");
+        }
+    }
+    public static ArrayList<Evaluacion> readFile(String file){
+
         ArrayList<Evaluacion> evaluaciones = new ArrayList<>();
-       try(Scanner sc = new Scanner(new File(File))) {
-           while(sc.hasNextLine()){
-              String linea=sc.nextLine();
-              String[] tokens = linea.split("\\|");
-               Evaluacion v =new Evaluacion(Integer.parseInt(tokens[0]),tokens[1],Integer.parseInt(tokens[2]),Integer.parseInt(tokens[3]),Integer.parseInt(tokens[4]),Double.parseDouble(tokens[5]));
-              evaluaciones.add(v);
-              
-               
-           }
-       }
-          catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-       return evaluaciones;
-    }   
+        try(BufferedReader bf =new BufferedReader(new FileReader(file))){
+        String linea;
+        while((linea = bf.readLine()) !=null){
+            
+            String[] tokens=linea.split("\\|");
+            Evaluacion e = new Evaluacion(Integer.parseInt(tokens[0]),tokens[1],Integer.parseInt(tokens[2]),Integer.parseInt(tokens[3]),Integer.parseInt(tokens[4]),Double.parseDouble(tokens[5]));
+            evaluaciones.add(e);       
+        }
+
+        }catch(Exception e){
+            System.out.println("No se pudo leer el archivo");
+            System.out.println(e.getMessage());
+        }
+        return evaluaciones;
+    }
+    
 }
 

@@ -7,12 +7,17 @@
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -152,32 +157,41 @@ public class Concurso {
         
     }
     
-    public void saveFile(String nomfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true))){
-           
-           pw.println(this.id+"|"+this.nombre+"|"+this.fecha+"|"+this.fechaInscripcion+"|"+this.fechaCierreInscripcion+"|"+this.tematica+"|"+this.costo+"|"+this.inscripciones);
-       }
-       
-       catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-   }
-   public static ArrayList<Concurso> readFile(String nomfile){
-       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        public void saveFile(String file){
+        
+        try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
+                      
+            f.write(this.id+"|");
+            f.write(this.nombre+"|");
+            f.write(this.fecha+"|");
+            f.write(this.fechaInscripcion+"|");
+            f.write(this.fechaCierreInscripcion+"|");
+            f.write(this.tematica+"|");
+            f.write(this.costo+"|");
+            f.write(this.inscripciones+"|");
+            f.newLine();
+   
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("no se pudo guardar el archivo");
+        }    
+  }
+    public static ArrayList<Concurso> readFile(String file){
 
-       ArrayList<Concurso> concursos = new ArrayList<>();
-       try(Scanner sc = new Scanner(new File(nomfile))){
-           while(sc.hasNextLine()){
-               String linea = sc.nextLine();
-               String[] tokens = linea.split("\\|");
-               Concurso c = new Concurso(Integer.parseInt(tokens[0]),tokens[1],LocalDate.parse(tokens[2]),LocalDate.parse(tokens[3]),LocalDate.parse(tokens[4]),tokens[5],Double.parseDouble(tokens[6]));              
-               concursos.add(c);
-           }
-           
-       }
-       catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-       return concursos; 
-    } 
+        ArrayList<Concurso> concursos = new ArrayList<>();
+        try(BufferedReader bf =new BufferedReader(new FileReader(file))){
+        String linea;
+        while((linea = bf.readLine()) !=null){
+            
+            String[] tokens=linea.split("\\|");
+            Concurso c = new Concurso(Integer.parseInt(tokens[0]),tokens[1],LocalDate.parse(tokens[2]),LocalDate.parse(tokens[3]),LocalDate.parse(tokens[4]),tokens[5],Double.parseDouble(tokens[6]));
+            concursos.add(c);       
+        }
+
+        }catch(Exception e){
+            System.out.println("No se pudo leer el archivo");
+            System.out.println(e.getMessage());
+        }
+        return concursos;
+    }
 }

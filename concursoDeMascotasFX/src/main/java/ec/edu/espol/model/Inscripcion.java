@@ -6,8 +6,12 @@
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -23,25 +27,34 @@ public class Inscripcion {
     private int id;
     private int idMascota;
     private String nMascota;
-    private String nConcurso;
     private Mascota mascota;
     private LocalDate fechaIns;
     private int idConcurso;
     private double valor;
     private double descuento;
+    private String m;
     
     //Constructor
 
-    public Inscripcion(int id,  String nMascota,String nConcuso, double valor,LocalDate fechaIns ) {
+    public Inscripcion(int id,  String m,String nConcuso, double valor,LocalDate fechaIns ) {
         this.id = id;
-        this.nConcurso=nConcurso;
         this.nMascota=nMascota;
         this.idMascota = idMascota;
         this.mascota = mascota;
         this.idConcurso = idConcurso;
         this.valor = valor;
         this.descuento = descuento;
+        this.m=m;
     }
+
+    public String getM() {
+        return m;
+    }
+
+    public void setM(String m) {
+        this.m = m;
+    }
+    
 
     public int getId() {
         return id;
@@ -66,15 +79,6 @@ public class Inscripcion {
     public void setnMascota(String nMascota) {
         this.nMascota = nMascota;
     }
-
-    public String getnConcurso() {
-        return nConcurso;
-    }
-
-    public void setnConcurso(String nConcurso) {
-        this.nConcurso = nConcurso;
-    }
-
     public Mascota getMascota() {
         return mascota;
     }
@@ -125,11 +129,11 @@ public class Inscripcion {
         String nombre = sc.next();
         sc.nextLine();
         System.out.println("Nombre de Concurso: ");
-        String nombreConcurso = sc.next();
+        String nombreConcurso = sc.nextLine();
         System.out.println("Valor a pagar por la inscripción: ");
         double pagoInscripcion = sc.nextDouble();
         System.out.println("Fecha de la inscripción (yyyy-mm-dd): ");
-        String fechaInscripcion = sc.next().toString();
+        String fechaInscripcion = sc.next();
         System.out.println(fechaInscripcion);
         LocalDate fecha_Inscripcion = LocalDate.parse(fechaInscripcion);
         // Descuento
@@ -162,39 +166,94 @@ public class Inscripcion {
         return true;
     }
     
-    //Método saveFile
-    public void saveFile(String nomfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true))){
-           
-           pw.println(this.id+"|"+this.nMascota+"|"+this.nConcurso+"|"+this.valor+"|"+this.fechaIns);
-       }
-       
-       catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-        
+//    //Método saveFile
+//    public void saveFile(String nomfile){
+//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true))){
+//           
+//           pw.println(this.id+"|"+this.nMascota+"|"+this.m+"|"+this.valor+"|"+this.fechaIns);
+//       }
+//       
+//       catch(Exception e){
+//           System.out.println(e.getMessage());
+//       }
+//        
+//    }
+//
+//
+//
+//public static ArrayList<Inscripcion> readFile(String File){
+//
+//        ArrayList<Inscripcion> inscripciones = new ArrayList<>();
+//       try(Scanner sc = new Scanner(new File(File))) {
+//           while(sc.hasNextLine()){
+//              String linea=sc.nextLine();
+//              String[] tokens = linea.split("\\|");
+//               Inscripcion e =new Inscripcion(Integer.parseInt(tokens[0]),tokens[1],tokens[2],Double.parseDouble(tokens[3]),LocalDate.parse(tokens[4]));
+//              inscripciones.add(e);
+//              
+//               
+//           }
+//       }
+//          catch(Exception e){
+//           System.out.println(e.getMessage());
+//       }
+//       return inscripciones;
+//
+//  
+//}   
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Inscripcion{id=").append(id);
+        sb.append(", idMascota=").append(idMascota);
+        sb.append(", nMascota=").append(nMascota);
+        sb.append(", mascota=").append(mascota);
+        sb.append(", fechaIns=").append(fechaIns);
+        sb.append(", idConcurso=").append(idConcurso);
+        sb.append(", valor=").append(valor);
+        sb.append(", descuento=").append(descuento);
+        sb.append(", m=").append(m);
+        sb.append('}');
+        return sb.toString();
     }
-
-
-
-public static ArrayList<Inscripcion> readFile(String File){
+    
+    
+    public void saveFile(String file) {
+        try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
+                      
+            f.write(this.id+"|");
+            f.write(this.idMascota+"|");
+            f.write(this.nMascota+"|");
+            f.write(this.mascota+"|");
+            f.write(this.fechaIns+"|");
+            f.write(this.idConcurso+"|");
+            f.write(this.valor+"|");
+            f.write(this.descuento+"|");
+            f.write(this.m+"|");
+            f.newLine();
+   
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("no se pudo guardar el archivo");
+        }
+    }
+    public static ArrayList<Inscripcion> readFile(String file){
 
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
-       try(Scanner sc = new Scanner(new File(File))) {
-           while(sc.hasNextLine()){
-              String linea=sc.nextLine();
-              String[] tokens = linea.split("\\|");
-               Inscripcion e =new Inscripcion(Integer.parseInt(tokens[0]),tokens[1],tokens[2],Double.parseDouble(tokens[3]),LocalDate.parse(tokens[4]));
-              inscripciones.add(e);
-              
-               
-           }
-       }
-          catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-       return inscripciones;
+        try(BufferedReader bf =new BufferedReader(new FileReader(file))){
+        String linea;
+        while((linea = bf.readLine()) !=null){
+            
+            String[] tokens=linea.split("\\|");
+            Inscripcion e = new Inscripcion(Integer.parseInt(tokens[0]),tokens[1],tokens[2],Double.parseDouble(tokens[3]),LocalDate.parse(tokens[4]));
+            inscripciones.add(e);       
+        }
 
-  
-}   
+        }catch(Exception e){
+            System.out.println("No se pudo leer el archivo");
+            System.out.println(e.getMessage());
+        }
+        return inscripciones;
+    }
 }

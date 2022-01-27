@@ -15,3 +15,7 @@
 15|ffff|2
 16|llll|1
 17|d|0
+18|no obedecer a su dueño|4
+19|no obedecer a su dueño|1
+20|no obedece a su dueño|2
+21|lllll|1|

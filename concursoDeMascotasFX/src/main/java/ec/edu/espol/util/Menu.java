@@ -96,7 +96,7 @@ public class Menu {
                do{++j;
                System.out.println("ingrese criterio");
                Criterio c= Criterio.nextCriterio(sc);
-               c.savefile("Criterios.txt");
+               c.saveFile("Criterios.txt");
                
                } while(numero>0 && numero>j);  
                   ArrayList<Criterio> vcc = Criterio.readFile("Criterios.txt");
@@ -119,7 +119,7 @@ public class Menu {
             case 8:
                 System.out.println("Ingrese Datos Evaluacion");
                 Evaluacion e = Evaluacion.nextEvaluacion(sc);
-                e.savefile("evaluacion.txt"); 
+                e.saveFile("evaluacion.txt"); 
                 ArrayList<Evaluacion> ve = Evaluacion.readFile("evaluacion.txt");
                 System.out.println(ve);
                 break;

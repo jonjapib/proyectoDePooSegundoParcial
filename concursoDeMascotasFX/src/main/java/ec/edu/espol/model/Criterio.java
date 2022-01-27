@@ -6,8 +6,10 @@
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,16 +134,20 @@ public class Criterio {
     }
       
       
-    public void savefile(String File){
-  try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(File),true))){
-      
+           public void saveFile(String file){
+        
+        try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
+                        
+            f.write(this.idCriterio+"|");
+            f.write(this.descripcion+"|");
+            f.write(this.concurso+"|");
+            f.newLine();
    
-      pw.println(+this.idCriterio+"|"+this.descripcion+"|"+this.concurso);
-      
-  }catch(Exception e){
-      System.out.println(e.getMessage());
-  }
-   
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("no se pudo guardar el archivo");
+        }    
+    
 
   }
   public static ArrayList<Criterio> readFile(String File){

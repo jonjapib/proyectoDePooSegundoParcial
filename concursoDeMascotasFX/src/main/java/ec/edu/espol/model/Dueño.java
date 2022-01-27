@@ -1,9 +1,14 @@
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -85,18 +90,16 @@ public class Dueño {
     public void setMascotas(ArrayList<Mascota> mascotas) {
         this.mascotas = mascotas;
     }
-
-    @Override
+    
+        @Override
     public String toString() {
         return "Dueño{" + "id=" + id + ", nombre=" + nombre + ", apeillido=" + apeillido + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + "}"; //", mascotas=" + mascotas + '}';
     }
-    
-    public static Dueño nextDueño(Scanner sc){
+        public static Dueño nextDueño(Scanner sc){
         
         int idD = Util.nextID("Dueño.txt");
         System.out.println("Ingrese Nombre: ");
         String nameD = sc.nextLine();
-        sc.nextLine();
         System.out.println("Ingrese Apellido: ");
         String lnameD = sc.nextLine();
         System.out.println("Ingrese Direccion: ");
@@ -119,35 +122,43 @@ public class Dueño {
         return d ;
     }
     
-    public void saveFile(String nomfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true))){
-           
-           pw.println(this.id+"|"+this.nombre+"|"+this.apeillido+"|"+this.direccion+"|"+this.email+"|"+this.telefono+"|"+this.mascotas);
-       }
-       
-       catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-   }
-    public static ArrayList<Dueño> readFile(String nomfile){
-       ArrayList<Dueño> dueños = new ArrayList<>();
-       try(Scanner sc = new Scanner(new File(nomfile))){
-           while(sc.hasNextLine()){
-               String linea = sc.nextLine();
-               String[] tokens = linea.split("|");
-               
-               ArrayList<Mascota> str = new ArrayList<>();
-               String str1 [] = tokens[6].split(",");
-               
-               Dueño d = new Dueño(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
-               dueños.add(d);
-           }
-           
-       }
-       catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-       return dueños;
+    public void saveFile(String file){
+        
+        try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
+                      
+            f.write(this.id+"|");
+            f.write(this.nombre+"|");
+            f.write(this.apeillido+"|");
+            f.write(this.direccion+"|");
+            f.write(this.telefono+"|");
+            f.write(this.email+"|");
+            f.newLine();
+   
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("no se pudo guardar el archivo");
+        }    
+  }
+    public static ArrayList<Dueño> readFile(String file){
+
+        ArrayList<Dueño> dueños = new ArrayList<>();
+        try(BufferedReader bf =new BufferedReader(new FileReader(file))){
+        String linea;
+        while((linea = bf.readLine()) !=null){
+            
+            String[] tokens=linea.split("\\|");
+            Dueño d = new Dueño(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
+            dueños.add(d);       
+        }
+
+        }catch(Exception e){
+            System.out.println("No se pudo leer el archivo");
+            System.out.println(e.getMessage());
+        }
+        return dueños;
     }
+    
+    
+    
 }
 

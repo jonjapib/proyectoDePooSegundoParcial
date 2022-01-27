@@ -1,8 +1,10 @@
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -152,17 +154,22 @@ public class Mascota {
         return new Mascota(Util.nextID("Mascota.txt"), nameM, razaM, fechaM0, tipoM, idMD, duenio);
     }
     
-    public void saveFile(String nomfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true))){
-           
-           pw.println(this.id+"|"+this.nombre+"|"+this.raza+"|"+this.fechaNacimiento+"|"+this.tipo+"|"+this.idDueño);
-       }
-       
-       catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-   }
-   public static ArrayList<Mascota> readFile(String nomfile){
+        public void saveFile(String file){
+            try(BufferedWriter f=new BufferedWriter(new FileWriter(file, true))){
+                
+                f.write(this.id+"|");
+                f.write(this.nombre+"|");
+                f.write(this.raza+"|");            
+                f.write(this.fechaNacimiento+"|");
+                f.write(this.tipo+"|");
+                f.write(this.idDueño+"|");
+                f.newLine();
+            }catch(Exception e){
+                System.out.println("No se puede guardar");
+            }   }
+ 
+        
+        public static ArrayList<Mascota> readFile(String nomfile){
        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
        ArrayList<Mascota> mascotas = new ArrayList<>();
@@ -182,5 +189,6 @@ public class Mascota {
        return mascotas; 
     } 
     
+        
     
 }
