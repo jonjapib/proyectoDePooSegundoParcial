@@ -2,4 +2,7 @@
 2|mascotas y disfraces|2016-12-01|2016-06-01|2016-11-01|disfrazar de la formma mas ocurrente a u mascota|30.0|null
 3|buenos amigos|2017-12-01|2017-06-01|2017-11-01|tomarse fotos divertidas junto con su amigo perruno |15.0|null
 4|animales geniales|2018-12-01|2018-06-01|2018-11-01|los mejores trucos de mascotas|35.0|null
-5|jon|2016-08-06|2016-08-06|2016-09-06|salta salta|30.0|null|
+5|brincos|2016-08-06|2016-08-06|2016-09-06|salta lo mas alto que puedas junto a tu mascota|30.0|null|
+6|A|2016-08-06|2016-08-06|2016-08-06|B|30.0|null|
+7|A2|2016-08-06|2016-08-06|2016-08-06|B2|32.0|null|
+8|a|2016-08-06|2016-08-06|2016-08-06|b|25.0|null|
