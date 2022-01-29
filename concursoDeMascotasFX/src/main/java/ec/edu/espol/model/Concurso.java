@@ -34,6 +34,7 @@ public class Concurso {
     private String tematica;
     private double costo;
     private ArrayList<Inscripcion> inscripciones;
+    
 
     public Concurso(int id, String nombre, LocalDate fecha, LocalDate fechaInscripcion, LocalDate fechaCierreInscripcion, String tematica, double costo) {
         this.id = id;
@@ -112,7 +113,7 @@ public class Concurso {
 
     @Override
     public String toString() {
-        return "[" +id + "," + nombre + "," + fecha + "," + fechaInscripcion + "," + fechaCierreInscripcion + "," + tematica + "," + costo + "," + inscripciones + "]";
+        return "[" +id + "," + nombre + "," + fecha + "," + fechaInscripcion + "," + fechaCierreInscripcion + "," + tematica + "," + costo  + "]";
     }
     
 
@@ -168,7 +169,7 @@ public class Concurso {
             f.write(this.fechaCierreInscripcion+"|");
             f.write(this.tematica+"|");
             f.write(this.costo+"|");
-            f.write(this.inscripciones+"|");
+
             f.newLine();
    
         }catch(Exception e){
