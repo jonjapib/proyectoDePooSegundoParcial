@@ -218,7 +218,7 @@ public class Inscripcion {
         return sb.toString();
     }
     
-    
+    // return new Inscripcion(Util.nextID("inscripciones.txt"),nombre,nombreConcurso,pagoInscripcion,fecha_Inscripcion);
     public void saveFile(String file) {
         try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
                       

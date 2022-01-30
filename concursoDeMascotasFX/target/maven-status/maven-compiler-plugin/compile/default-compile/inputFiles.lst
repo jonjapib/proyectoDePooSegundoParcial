@@ -1,17 +1,19 @@
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Premio.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\module-info.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaCriterioController.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaEvaluacionController.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaDueñoController.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\concursodemascotasfx\App.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaPrincipalController.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Dueño.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Concurso.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\util\Menu.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Criterio.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\MiembroJurado.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\util\Util.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Evaluacion.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Mascota.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Inscripcion.java
-C:\Users\Pibaque Ponce\Documents\Jonathan\Proyecto\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaConcursoController.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\concursodemascotasfx\App.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\excepciones\InvalidComandException.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Inscripcion.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaCriterioController.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Concurso.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Mascota.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\MiembroJurado.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaPrincipalController.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaDueñoController.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Dueño.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\FXMLController.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaEvaluacionController.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\util\Util.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Criterio.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\util\Menu.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\module-info.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Evaluacion.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\controller\VentanaConcursoController.java
+C:\Users\Ana\Documents\GitHub\proyectoDePooSegundoParcial\concursoDeMascotasFX\src\main\java\ec\edu\espol\model\Premio.java

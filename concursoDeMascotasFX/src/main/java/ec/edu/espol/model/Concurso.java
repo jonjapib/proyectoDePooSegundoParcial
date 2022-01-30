@@ -44,7 +44,6 @@ public class Concurso {
         this.fechaCierreInscripcion = fechaCierreInscripcion;
         this.tematica = tematica;
         this.costo = costo;
-        this.inscripciones = inscripciones;
     }
 
     public int getId() {
@@ -168,7 +167,7 @@ public class Concurso {
             f.write(this.fechaInscripcion+"|");
             f.write(this.fechaCierreInscripcion+"|");
             f.write(this.tematica+"|");
-            f.write(this.costo+"|");
+            f.write(this.costo+"");
 
             f.newLine();
    

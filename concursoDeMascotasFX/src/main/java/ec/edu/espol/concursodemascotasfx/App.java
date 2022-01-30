@@ -20,7 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("ventanaPrincipal"), 640, 480);
+        scene = new Scene(loadFXML("FXML"), 640, 480);
       //scene = new Scene(loadFXML("ventanaPrincial"),500,500);
         stage.setScene(scene);
         stage.show();
@@ -36,10 +36,10 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
-//        while(true){
-//        Menu.imprimirMenu();
-//        Menu.menu();
-//        }
+ //       launch();
+        while(true){
+        Menu.imprimirMenu();
+        Menu.menu();
+        }
     }
 }

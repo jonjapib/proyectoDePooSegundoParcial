@@ -4,3 +4,4 @@
 4|roky|null|60.0|null
 5|kk|null|100.0|null
 6|null|h|30.0|null
+7|0|null|null|null|0|345.0|0.0|gatos|
