@@ -46,6 +46,7 @@ public class VentanaPrincipalController implements Initializable {
 
     @FXML
     private void opciones(ActionEvent event) {
+        
     }
     
 }
