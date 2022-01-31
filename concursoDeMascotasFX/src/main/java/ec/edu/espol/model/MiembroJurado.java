@@ -5,7 +5,7 @@
  */
 package ec.edu.espol.model;
 
-import ec.edu.espol.util.Menu;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -95,63 +95,52 @@ public class MiembroJurado {
     public String toString() {
        return   "["+idMJCedula+","+nombre + "," + apellido + "," + telefono + "," + email + "," + perfil + "]";
     }
-    
-    
-        public static MiembroJurado nextMiembroJurado(Scanner sc){
-           System.out.println("Ingrese numero de Cedula(sin el cero al comienzo):");
-           int cedula=sc.nextInt();
-            
-           System.out.println("Ingrese Nombre:");
-           String nombre=sc.next();
-            
-            System.out.println("Ingrese apellido:");
-            String apellido=sc.next();
-                           
-            System.out.println("Ingrese telefono:");
-            String telefono= sc.next();
-                                  
-            System.out.println("Ingrese email:");
-            String email=sc.next();
-                                             
-            System.out.println("perfil:");
-            String perfil =sc.next();
-            
-       MiembroJurado persona = new MiembroJurado(cedula ,nombre, apellido, telefono, email, perfil);
-    
-        return persona;
-    
-    }
-  public void savefile(String File){
-  try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(File),true))){
-      
-   
-      pw.println(+this.idMJCedula+"|"+this.nombre+"|"+this.apellido+"|"+this.telefono+"|"+this.email+"|"+perfil);
-      
-  }catch(Exception e){
-      System.out.println(e.getMessage());
-  }
-   
+        
+    public static MiembroJurado nextMiembroJurado(Scanner sc){
+        System.out.println("Ingrese numero de Cedula(sin el cero al comienzo):");
+        int cedula=sc.nextInt();
 
-  }
-  public static ArrayList<MiembroJurado> readFile(String File){
+        System.out.println("Ingrese Nombre:");
+        String nombre=sc.next();
+
+        System.out.println("Ingrese apellido:");
+        String apellido=sc.next();
+
+        System.out.println("Ingrese telefono:");
+        String telefono= sc.next();
+
+        System.out.println("Ingrese email:");
+        String email=sc.next();
+
+        System.out.println("perfil:");
+        String perfil =sc.next();
+
+        MiembroJurado persona = new MiembroJurado(cedula ,nombre, apellido, telefono, email, perfil);
+
+        return persona;    
+    }
+    
+    public void savefile(String File){
+        try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(File),true))){
+            pw.println(+this.idMJCedula+"|"+this.nombre+"|"+this.apellido+"|"+this.telefono+"|"+this.email+"|"+perfil);
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }   
+    }
+  
+    public static ArrayList<MiembroJurado> readFile(String File){
         ArrayList<MiembroJurado> jurado = new ArrayList<>();
-       try(Scanner sc = new Scanner(new File(File))) {
+        try(Scanner sc = new Scanner(new File(File))) {
            while(sc.hasNextLine()){
               String linea=sc.nextLine();
               String[] tokens = linea.split("\\|");
-               MiembroJurado v =new MiembroJurado(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
-              jurado.add(v);
-              
-               
+              MiembroJurado v =new MiembroJurado(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
+              jurado.add(v);               
            }
-       }
-          catch(Exception e){
+       }catch(Exception e){
            System.out.println(e.getMessage());
        }
        return jurado;
-    }
-  
-    
-    
-    
+    }  
 }
