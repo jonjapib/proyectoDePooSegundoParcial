@@ -1,7 +1,6 @@
 
 package ec.edu.espol.controller;
 
-
 import ec.edu.espol.concursodemascotasfx.App;
 import ec.edu.espol.model.Concurso;
 import ec.edu.espol.util.Busqueda;
@@ -23,11 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author user
- */
+
 public class VentanaInicioController implements Initializable {
 
     @FXML

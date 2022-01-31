@@ -19,13 +19,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
-
+/**
+ * FXML Controller class
+ *
+ * @author Pibaque Ponce
+ */
 public class VentanaConcursoController implements Initializable {
 
     @FXML
     private BorderPane root;
-    @FXML
-    private Button btnRegresar;
     @FXML
     private TextField txtID;
     @FXML
@@ -40,7 +42,9 @@ public class VentanaConcursoController implements Initializable {
     private DatePicker dtPckFin;
     @FXML
     private DatePicker dtPckFecha;
-
+    @FXML
+    private Button btnRegresar;
+    
     private VentanaConcursoController vcc;
     private BorderPane principal;    
     private BorderPane thisOne;
@@ -48,6 +52,8 @@ public class VentanaConcursoController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,6 +70,7 @@ public class VentanaConcursoController implements Initializable {
     public BorderPane getRoot() {
         return root;
     }
+
     @FXML
     private void registrar(ActionEvent event) {
         if(validarCampos())
@@ -80,7 +87,7 @@ public class VentanaConcursoController implements Initializable {
     }
 
     @FXML
-    private void regresar(ActionEvent event) {
+    private void regresar(ActionEvent event) {     
         thisOne.getChildren().clear();
         thisOne.setDisable(true);
         principal.setVisible(true);
@@ -147,5 +154,4 @@ public class VentanaConcursoController implements Initializable {
         };        
         this.dtPckFin.setDayCellFactory(dayCellFactory);
     }
-    
 }

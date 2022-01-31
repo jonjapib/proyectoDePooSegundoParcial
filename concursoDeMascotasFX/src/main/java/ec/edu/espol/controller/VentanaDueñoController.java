@@ -83,5 +83,4 @@ public class VentanaDueñoController implements Initializable {
         this.txtEmail.clear();
     }
     
-    
 }
