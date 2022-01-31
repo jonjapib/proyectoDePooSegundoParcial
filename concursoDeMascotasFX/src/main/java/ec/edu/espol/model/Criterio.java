@@ -26,12 +26,12 @@ public class Criterio {
     private ArrayList<Evaluacion> evaluaciones;
     private int idConcurso;
     private int concurso;
-
-       public Criterio(int idCriterio, String descripcion, int concurso) {
-        this.idCriterio = idCriterio;
-        this.descripcion = descripcion;
-        this.concurso=concurso;
-        this.evaluaciones=new ArrayList<>();
+    
+    public Criterio(int idCriterio, String descripcion, int concurso) {
+    this.idCriterio = idCriterio;
+    this.descripcion = descripcion;
+    this.concurso=concurso;
+    this.evaluaciones=new ArrayList<>();
     }
 
     public int getIdConcurso() {
@@ -50,8 +50,6 @@ public class Criterio {
         this.concurso = concurso;
     }
     
-
-
     public int getIdCriterio() {
         return idCriterio;
     }
@@ -76,8 +74,6 @@ public class Criterio {
         this.evaluaciones = evaluaciones;
     }
 
-  
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -93,77 +89,61 @@ public class Criterio {
         if (this.idCriterio != other.idCriterio) {
             return false;
         }
-        if (!Objects.equals(this.descripcion, other.descripcion)) {
-            return false;
-   
-        }
-        return true;
+        return Objects.equals(this.descripcion, other.descripcion);
     }
     
-
-
-      public static Criterio nextCriterio(Scanner sc){
-            
-         
-          ArrayList<String> d = new ArrayList<>();
-             for(Concurso c: Concurso.readFile("Concurso.txt")){
+    public static Criterio nextCriterio(Scanner sc){
+        ArrayList<String> d = new ArrayList<>();
+        for(Concurso c: Concurso.readFile("Concurso.txt")){
             d.add(String.valueOf(c.getId()));
             d.add(c.getNombre());     
         } 
-           sc.nextLine();
+        sc.nextLine();
+
+        System.out.println("Ingrese descripcion:");
+        String descripcion=sc.nextLine();
+        sc.useDelimiter("\n");
+
+        System.out.println("Ingrese el nombre del Concurso:");
+        System.out.println(d);
+        String nombreConcurso= sc.next();
+        int idP = 0;
+        ArrayList<Concurso> j = Concurso.readFile("concurso.txt");
+        for(Concurso x: j){
+            if(x.getNombre().equals(nombreConcurso))
+                idP = x.getId();            
+        }    
+
+        Criterio criterio = new Criterio(Util.nextID("Criterios.txt"), descripcion, idP );
+        return criterio;    
+    }      
       
-          System.out.println("Ingrese descripcion:");
-            String descripcion=sc.nextLine();
-            sc.useDelimiter("\n");
-           
-       System.out.println("Ingrese el nombre del Concurso:");
-       System.out.println(d);
-       String nombreConcurso= sc.next();
-       int idP = 0;
-                ArrayList<Concurso> j = Concurso.readFile("concurso.txt");
-                 for(Concurso x: j){
-                      if(x.getNombre().equals(nombreConcurso)){
-                          idP = x.getId();
-                                         }
-                 }    
-                    
-       Criterio criterio = new Criterio(Util.nextID("Criterios.txt"), descripcion, idP );
-    
-        return criterio;
-    
-    }
-      
-      
-           public void saveFile(String file){
-        
+    public void saveFile(String file){
         try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
-                        
             f.write(this.idCriterio+"|");
             f.write(this.descripcion+"|");
             f.write(this.concurso+"|");
             f.newLine();
-   
         }catch(Exception e){
             System.out.println(e.getMessage());
             System.out.println("no se pudo guardar el archivo");
         }    
-    
-
-  }
-  public static ArrayList<Criterio> readFile(String File){
-        ArrayList<Criterio> criterios = new ArrayList<>();
-       try(Scanner sc = new Scanner(new File(File))) {
-           while(sc.hasNextLine()){
-              String linea=sc.nextLine();
-              String[] tokens = linea.split("\\|");
-               Criterio vc =new Criterio(Integer.parseInt(tokens[0]),tokens[1],Integer.parseInt(tokens[2]));
-              criterios.add(vc);
     }
-       }
-          catch(Exception e){
-           System.out.println(e.getMessage());
-       }
-       return criterios;
+           
+    public static ArrayList<Criterio> readFile(String File){
+        ArrayList<Criterio> criterios = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(File))) {
+            while(sc.hasNextLine()){
+                String linea=sc.nextLine();
+                String[] tokens = linea.split("\\|");
+                Criterio vc =new Criterio(Integer.parseInt(tokens[0]),tokens[1],Integer.parseInt(tokens[2]));
+                criterios.add(vc);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return criterios;
     }
   
   
