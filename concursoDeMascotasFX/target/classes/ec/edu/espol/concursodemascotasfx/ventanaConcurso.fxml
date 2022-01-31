@@ -1,11 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controller.VentanaConcursoController">
-    
-</AnchorPane>
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="378.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controller.VentanaConcursoController">
+   <top>
+      <VBox alignment="CENTER" prefHeight="117.0" prefWidth="372.0" style="-fx-background-color: #CCD96A;" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="128.0" prefWidth="327.0" text="Registro de Concurso" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Book Antiqua Bold" size="32.0" />
+               </font>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <GridPane alignment="CENTER" prefHeight="78.0" prefWidth="327.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="128.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="206.0" minWidth="10.0" prefWidth="159.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+        </rowConstraints>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <Label text="ID:">
+               <font>
+                  <Font name="Book Antiqua" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Nombre:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Book Antiqua" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Fecha:" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Book Antiqua" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Inscripción desde:" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Book Antiqua" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Inscripción hasta:" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Book Antiqua" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Temática:" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Book Antiqua" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Costo:" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Book Antiqua" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtID" disable="true" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtTematica" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtCosto" promptText="\$" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <DatePicker fx:id="dtPckInicio" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="dtPckFin" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <DatePicker fx:id="dtPckFecha" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="72.0" prefWidth="389.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#registrar" prefHeight="40.0" prefWidth="115.0" style="-fx-background-color: #CCD96A;" text="Registrar">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#regresar" prefHeight="40.0" prefWidth="115.0" style="-fx-background-color: #CCD96A;" text="Regresar">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>
