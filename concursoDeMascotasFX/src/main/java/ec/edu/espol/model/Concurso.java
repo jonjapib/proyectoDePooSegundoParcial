@@ -1,9 +1,4 @@
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
@@ -21,10 +16,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-/**
- *
- * @author megag
- */
+
 public class Concurso {
     private int id;
     private String nombre;
@@ -34,7 +26,7 @@ public class Concurso {
     private String tematica;
     private double costo;
     private ArrayList<Inscripcion> inscripciones;
-    
+    private ArrayList<MiembroJurado> jurados;
 
     public Concurso(int id, String nombre, LocalDate fecha, LocalDate fechaInscripcion, LocalDate fechaCierreInscripcion, String tematica, double costo) {
         this.id = id;
@@ -44,58 +36,60 @@ public class Concurso {
         this.fechaCierreInscripcion = fechaCierreInscripcion;
         this.tematica = tematica;
         this.costo = costo;
+        this.inscripciones = new ArrayList<>();
+        this.jurados = new ArrayList<>();
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public LocalDate getFechaInscripcion() {
-        return fechaInscripcion;
-    }
-
-    public LocalDate getFechaCierreInscripcion() {
-        return fechaCierreInscripcion;
-    }
-
-    public String getTematica() {
-        return tematica;
-    }
-
-    public double getCosto() {
-        return costo;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public LocalDate getFechaInscripcion() {
+        return fechaInscripcion;
     }
 
     public void setFechaInscripcion(LocalDate fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
 
+    public LocalDate getFechaCierreInscripcion() {
+        return fechaCierreInscripcion;
+    }
+
     public void setFechaCierreInscripcion(LocalDate fechaCierreInscripcion) {
         this.fechaCierreInscripcion = fechaCierreInscripcion;
     }
 
+    public String getTematica() {
+        return tematica;
+    }
+
     public void setTematica(String tematica) {
         this.tematica = tematica;
+    }
+
+    public double getCosto() {
+        return costo;
     }
 
     public void setCosto(double costo) {
@@ -109,6 +103,16 @@ public class Concurso {
     public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
+
+    public ArrayList<MiembroJurado> getJurados() {
+        return jurados;
+    }
+
+    public void setJurados(ArrayList<MiembroJurado> jurados) {
+        this.jurados = jurados;
+    }
+
+    
 
     @Override
     public String toString() {
@@ -128,10 +132,7 @@ public class Concurso {
             return false;
         }
         final Concurso other = (Concurso) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        return true;
+        return this.id == other.id;
     }
     
     public static Concurso nextConcurso(Scanner sc){
@@ -153,29 +154,28 @@ public class Concurso {
         System.out.println("Ingrese Costo: ");
         double costo = sc.nextDouble();
         
-        return new Concurso(Util.nextID("Concurso.txt"),nameM,fecha0,fechaI0,fechaF0,tematica,costo);
-        
+        return new Concurso(Util.nextID("Concurso.txt"),nameM,fecha0,fechaI0,fechaF0,tematica,costo);        
     }
     
-        public void saveFile(String file){
-        
+    public void saveFile(String file){
         try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
-                      
             f.write(this.id+"|");
             f.write(this.nombre+"|");
             f.write(this.fecha+"|");
             f.write(this.fechaInscripcion+"|");
             f.write(this.fechaCierreInscripcion+"|");
             f.write(this.tematica+"|");
-            f.write(this.costo+"");
+            f.write(this.costo+"|");
 
             f.newLine();
-   
+
         }catch(Exception e){
             System.out.println(e.getMessage());
             System.out.println("no se pudo guardar el archivo");
+            Util.alertaError(e.getLocalizedMessage(), e.toString()+"\nNo se pudo guardar el archivo con los datos");
         }    
-  }
+    }
+    
     public static ArrayList<Concurso> readFile(String file){
 
         ArrayList<Concurso> concursos = new ArrayList<>();
@@ -191,6 +191,7 @@ public class Concurso {
         }catch(Exception e){
             System.out.println("No se pudo leer el archivo");
             System.out.println(e.getMessage());
+            Util.alertaError(e.getLocalizedMessage(), e.toString()+"\nNo se pudo leer el archivo con los datos");
         }
         return concursos;
     }
