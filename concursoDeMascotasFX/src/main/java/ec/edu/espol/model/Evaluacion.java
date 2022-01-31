@@ -1,50 +1,30 @@
 
 package ec.edu.espol.model;
 
-import ec.edu.espol.util.Util;
+import ec.edu.espol.util.Busqueda;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class Evaluacion {
+    //Atributos
     
     private int id;
     private double nota;
-    private int idInscripcion;
     private Inscripcion inscripcion;
-    private int idMiembroJurado;
     private MiembroJurado miembroJurado;
-    private int idCriterio;
     private Criterio criterio;
-    private String emailJurado;
 
-    public String getEmailJurado() {
-        return emailJurado;
-    }
-
-    public void setEmailJurado(String emailJurado) {
-        this.emailJurado = emailJurado;
-    }
-    
-    //Constructor
-
-    public Evaluacion(int id,String emailJurado, int idInscripcion, int idMiembroJurado, int idCriterio,double nota) {
+    public Evaluacion(int id, double nota, Inscripcion inscripcion, MiembroJurado miembroJurado, Criterio criterio) {
         this.id = id;
-        this.emailJurado= emailJurado;
-        this.idInscripcion = idInscripcion;
-        this.idMiembroJurado = idMiembroJurado;
-        this.idCriterio = idCriterio;
         this.nota = nota;
         this.inscripcion = inscripcion;
         this.miembroJurado = miembroJurado;
         this.criterio = criterio;
-    }
-
-
+    }    
     
     //Getters and setters
 
@@ -56,28 +36,8 @@ public class Evaluacion {
         this.id = id;
     }
 
-    public int getIdInscripcion() {
-        return idInscripcion;
-    }
-
-    public void setIdInscripcion(int idInscripcion) {
-        this.idInscripcion = idInscripcion;
-    }
-
-    public Inscripcion getInscripcion() {
-        return inscripcion;
-    }
-
     public void setInscripcion(Inscripcion inscripcion) {
         this.inscripcion = inscripcion;
-    }
-
-    public int getIdMiembroJurado() {
-        return idMiembroJurado;
-    }
-
-    public void setIdMiembroJurado(int idMiembroJurado) {
-        this.idMiembroJurado = idMiembroJurado;
     }
 
     public MiembroJurado getMiembroJurado() {
@@ -96,14 +56,6 @@ public class Evaluacion {
         this.nota = nota;
     }
 
-    public int getIdCriterio() {
-        return idCriterio;
-    }
-
-    public void setIdCriterio(int idCriterio) {
-        this.idCriterio = idCriterio;
-    }
-
     public Criterio getCriterio() {
         return criterio;
     }
@@ -112,55 +64,15 @@ public class Evaluacion {
         this.criterio = criterio;
     }
     
-    //Método nextEvaluacion
-    public static Evaluacion nextEvaluacion(Scanner sc){
-        int idMJ=0;
-        sc.useDelimiter("\n");
-        System.out.println("Ingrese correo del Jurado: ");
-        String emailD = sc.nextLine();
-        sc.nextLine();
-
-        ArrayList<MiembroJurado> j = MiembroJurado.readFile("jurado.txt");
-        for(MiembroJurado x: j){
-            if(x.getEmail().equals(emailD))
-                idMJ = x.getIdMJCedula();
-            else{
-                System.out.println("Ingrese correo del Jurado: ");
-                emailD = sc.nextLine();
-            }
-        }
-        System.out.println("ingrese nota de evaluacion");
-        double nota=sc.nextDouble();
-        int idCriterio = 0; 
-        ArrayList<String> listCriterio = new ArrayList<>();
-        ArrayList<Criterio> c = Criterio.readFile("Criterios.txt");   
-        for(Criterio y: c){
-            idCriterio = y.getIdCriterio();
-            listCriterio.add(y.getDescripcion());
-        } 
-        System.out.println(listCriterio);
-        int idInscripcion = 0; 
-
-        ArrayList<Inscripcion> ii = Inscripcion.readFile("Inscripciones.txt");   
-        for(Inscripcion z: ii)
-            idInscripcion = z.getId();
-        
-        Evaluacion evaluacion = new Evaluacion(Util.nextID("evaluacion.txt"), emailD,idInscripcion ,idMJ,idCriterio, nota);
-        return evaluacion;
-    }
-   
+  
     @Override
     public String toString(){     
         StringBuilder sb = new StringBuilder();
         sb.append("Evaluacion{id=").append(id);
         sb.append(", nota=").append(nota);
-        sb.append(", idInscripcion=").append(idInscripcion);
-        sb.append(", inscripcion=").append(inscripcion);
-        sb.append(", idMiembroJurado=").append(idMiembroJurado);
-        sb.append(", miembroJurado=").append(miembroJurado);
-        sb.append(", idCriterio=").append(idCriterio);
-        sb.append(", criterio=").append(criterio);
-        sb.append(", emailJurado=").append(emailJurado);
+        sb.append(", idInscripcion=").append(this.inscripcion.getId());
+        sb.append(", idMiembroJurado=").append(this.miembroJurado.getIdMJCedula());
+        sb.append(", idCriterio=").append(this.criterio.getIdCriterio());
         sb.append('}');
         return sb.toString();
     }
@@ -169,12 +81,9 @@ public class Evaluacion {
         try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){                      
             f.write(this.id+"|");
             f.write(this.nota+"|");
-            f.write(this.idInscripcion+"|");
-            f.write(this.inscripcion+"|");
-            f.write(this.idMiembroJurado+"|");
-            f.write(this.idCriterio+"|");
-            f.write(this.criterio+"|");
-            f.write(this.emailJurado+"|");
+            f.write(this.inscripcion.getId()+"|");
+            f.write(this.miembroJurado.getIdMJCedula()+"|");            
+            f.write(this.criterio.getIdCriterio()+"|");
             f.newLine();   
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -182,13 +91,16 @@ public class Evaluacion {
         }
     }
     
-    public static ArrayList<Evaluacion> readFile(String file){
+    public static ArrayList<Evaluacion> readFile(String file, Concurso c){
         ArrayList<Evaluacion> evaluaciones = new ArrayList<>();
         try(BufferedReader bf =new BufferedReader(new FileReader(file))){
             String linea;
             while((linea = bf.readLine()) !=null){            
                 String[] tokens=linea.split("\\|");
-                Evaluacion e = new Evaluacion(Integer.parseInt(tokens[0]),tokens[1],Integer.parseInt(tokens[2]),Integer.parseInt(tokens[3]),Integer.parseInt(tokens[4]),Double.parseDouble(tokens[5]));
+                Inscripcion i = Busqueda.buscarInscripcion(Integer.parseInt(tokens[2]), c.getId());
+                MiembroJurado m = Busqueda.buscarJurado(Integer.parseInt(tokens[3]));
+                Criterio cr = Busqueda.buscarCriterio(Integer.parseInt(tokens[4]));                
+                Evaluacion e = new Evaluacion(Integer.parseInt(tokens[0]),Double.parseDouble(tokens[1]),i,m,cr);
                 evaluaciones.add(e);       
             }
         }catch(Exception e){
@@ -198,4 +110,3 @@ public class Evaluacion {
         return evaluaciones;
     }   
 }
-
