@@ -107,7 +107,7 @@ public class Concurso {
     }
 
     public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
-        this.inscripciones = inscripciones;
+        this.inscripciones =  inscripciones;
     }
 
     @Override
