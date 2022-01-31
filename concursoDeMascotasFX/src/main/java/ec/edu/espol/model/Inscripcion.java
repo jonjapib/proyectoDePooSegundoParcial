@@ -23,7 +23,7 @@ import java.util.Scanner;
  * @author Pibaque Ponce
  */
 public class Inscripcion {
-    //Argumentos
+    
     private int id;
     private int idMascota;
     private String nMascota;
@@ -34,9 +34,7 @@ public class Inscripcion {
     private double descuento;
     private String m;
     
-    //Constructor
-
-    public Inscripcion(int id,  String m,String nConcuso, double valor,LocalDate fechaIns ) {
+    public Inscripcion(int id, String m, String nConcuso, double valor, LocalDate fechaIns ) {
         this.id = id;
         this.nMascota=nMascota;
         this.idMascota = idMascota;
@@ -44,17 +42,8 @@ public class Inscripcion {
         this.idConcurso = idConcurso;
         this.valor = valor;
         this.descuento = descuento;
-        this.m=m;
-    }
-
-    public String getM() {
-        return m;
-    }
-
-    public void setM(String m) {
         this.m = m;
     }
-    
 
     public int getId() {
         return id;
@@ -79,6 +68,7 @@ public class Inscripcion {
     public void setnMascota(String nMascota) {
         this.nMascota = nMascota;
     }
+
     public Mascota getMascota() {
         return mascota;
     }
@@ -118,13 +108,17 @@ public class Inscripcion {
     public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
-    
-    
-    
-    //Método nextInscripcion
-    public static Inscripcion nextInscripcion(Scanner sc){
 
-        
+    public String getM() {
+        return m;
+    }
+
+    public void setM(String m) {
+        this.m = m;
+    }
+
+    
+    public static Inscripcion nextInscripcion(Scanner sc){    
         System.out.println("Nombre de la mascota: ");
         String nombre = sc.next();
         sc.nextLine();
@@ -136,17 +130,9 @@ public class Inscripcion {
         String fechaInscripcion = sc.next();
         System.out.println(fechaInscripcion);
         LocalDate fecha_Inscripcion = LocalDate.parse(fechaInscripcion);
-        // Descuento
-        
-        
-        
-        
-        return new Inscripcion(Util.nextID("inscripciones.txt"),nombre,nombreConcurso,pagoInscripcion,fecha_Inscripcion);
-        
+        // Descuento        
+        return new Inscripcion(Util.nextID("inscripciones.txt"),nombre,nombreConcurso,pagoInscripcion,fecha_Inscripcion);        
     }
-
-
-    
 
     @Override
     public boolean equals(Object obj) {
@@ -218,7 +204,6 @@ public class Inscripcion {
         return sb.toString();
     }
     
-    // return new Inscripcion(Util.nextID("inscripciones.txt"),nombre,nombreConcurso,pagoInscripcion,fecha_Inscripcion);
     public void saveFile(String file) {
         try(BufferedWriter f = new BufferedWriter(new FileWriter(file,true))){
                       
@@ -238,8 +223,8 @@ public class Inscripcion {
             System.out.println("no se pudo guardar el archivo");
         }
     }
+    
     public static ArrayList<Inscripcion> readFile(String file){
-
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
         try(BufferedReader bf =new BufferedReader(new FileReader(file))){
         String linea;
