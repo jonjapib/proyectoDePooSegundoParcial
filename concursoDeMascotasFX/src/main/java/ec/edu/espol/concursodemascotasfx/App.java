@@ -1,8 +1,6 @@
 package ec.edu.espol.concursodemascotasfx;
 
-import ec.edu.espol.util.Menu;
-import static ec.edu.espol.util.Menu.imprimirMenu;
-import static ec.edu.espol.util.Menu.menu;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,8 +18,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("FXML"), 640, 480);
-      //scene = new Scene(loadFXML("ventanaPrincial"),500,500);
+        scene = new Scene(loadFXML("ventanaInicio"), 670, 430);
+        stage.setResizable(false);
+        //scene = new Scene(loadFXML("ventanaPrincial"),500,500);
         stage.setScene(scene);
         stage.show();
     }
@@ -36,10 +35,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
- //       launch();
-        while(true){
-        Menu.imprimirMenu();
-        Menu.menu();
-        }
+        launch(args);
     }
 }
