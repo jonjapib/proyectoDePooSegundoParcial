@@ -141,7 +141,7 @@ public class Inscripcion {
         
         
         
-        return new Inscripcion(Util.nextID("inscripciones.txt"),nombre,nombreConcurso,pagoInscripcion,fecha_Inscripcion);
+        lreturn new Inscripcion(Util.nextID("inscripciones.txt"),nombre,nombreConcurso,pagoInscripcion,fecha_Inscripcion);
         
     }
 
