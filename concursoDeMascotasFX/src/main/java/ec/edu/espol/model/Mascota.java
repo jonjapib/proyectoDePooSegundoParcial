@@ -13,29 +13,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-/**
- *
- * @author megag
- */
+
 public class Mascota {
     private int id; 
     private String nombre;
     private String raza;
     private LocalDate fechaNacimiento;
-    private String tipo;          //perro o gato
-    private int idDueño;
+    private String tipo;          //perro o gato    
     private Dueño dueño;
     private ArrayList<Inscripcion> inscripciones;
     
-    public Mascota(int id, String nombre, String raza, LocalDate fechaNacimiento, String tipo, int idDueño, Dueño dueño){ //ArrayList<Inscripcion> inscripciones) {
+    public Mascota(int id, String nombre, String raza, LocalDate fechaNacimiento, String tipo, Dueño dueño){ //ArrayList<Inscripcion> inscripciones) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
         this.fechaNacimiento = fechaNacimiento;
-        this.tipo = tipo;
-        this.idDueño = idDueño;
+        this.tipo = tipo;        
         this.dueño = dueño;
-        this.inscripciones = inscripciones;
+        this.inscripciones = new ArrayList<>();
     }
 
     public int getId() {
@@ -56,10 +51,6 @@ public class Mascota {
 
     public String getTipo() {
         return tipo;
-    }
-
-    public int getIdDueño() {
-        return idDueño;
     }
 
     public Dueño getDueño() {
@@ -88,10 +79,6 @@ public class Mascota {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public void setIdDueño(int idDueño) {
-        this.idDueño = idDueño;
     }
 
     public void setDueño(Dueño dueño) {
@@ -125,48 +112,24 @@ public class Mascota {
     
     @Override
     public String toString() {
-        return "Mascota{" + "id=" + id + ", nombre=" + nombre + ", raza=" + raza + ", fechaNacimiento=" + fechaNacimiento + ", tipo=" + tipo + ", idDueño=" + idDueño + ", due\u00f1o=" + dueño + '}';
+        return "Mascota{" + "id=" + id + ", nombre=" + nombre + ", raza=" + raza + ", fechaNacimiento=" + fechaNacimiento + ", tipo=" + tipo + ", due\u00f1o=" + dueño + '}';
     }
-    
-    public static Mascota nextMascota(Scanner sc) {
-        int idMD = 0;
-        Dueño duenio = null;
-        System.out.println("Ingrese Nombre: ");
-        String nameM = sc.nextLine();
-        sc.nextLine();
-        System.out.println("Ingrese Raza: ");
-        String razaM = sc.nextLine();
-        System.out.println("Ingrese Fecha de Nacimiento(yyyy-mm-dd): ");
-        String fechaM = sc.nextLine();
-        LocalDate fechaM0 = LocalDate.parse(fechaM);
-        System.out.println("Ingrese Tipo de Mascota(Perro/Gato): ");
-        String tipoM = sc.nextLine();
         
-        System.out.println("Ingrese correo del Dueño: ");
-        String emailD = sc.nextLine();
-        ArrayList<Dueño> d = Dueño.readFile("Dueño.txt");
-        for(Dueño x: d){
-            if(x.getEmail().equals(emailD)){
-                idMD = x.getId();
-                duenio = x;
-            }
-        }
-        return new Mascota(Util.nextID("Mascota.txt"), nameM, razaM, fechaM0, tipoM, idMD, duenio);
-    }
     
-        public void saveFile(String file){
-            try(BufferedWriter f=new BufferedWriter(new FileWriter(file, true))){
-                
-                f.write(this.id+"|");
-                f.write(this.nombre+"|");
-                f.write(this.raza+"|");            
-                f.write(this.fechaNacimiento+"|");
-                f.write(this.tipo+"|");
-                f.write(this.idDueño+"|");
-                f.newLine();
-            }catch(Exception e){
-                System.out.println("No se puede guardar");
-            }   }
+    public void saveFile(String file){
+        try(BufferedWriter f=new BufferedWriter(new FileWriter(file, true))){
+
+            f.write(this.id+"|");
+            f.write(this.nombre+"|");
+            f.write(this.raza+"|");            
+            f.write(this.fechaNacimiento+"|");
+            f.write(this.tipo+"|");
+            f.write(this.dueño.getEmail()+"|");
+            f.newLine();
+        }catch(Exception e){
+            System.out.println("No se puede guardar");
+        }   
+    }
  
         
         public static ArrayList<Mascota> readFile(String nomfile){
@@ -178,7 +141,7 @@ public class Mascota {
                String linea = sc.nextLine();
                String[] tokens = linea.split("//|");
                String[] duenio = tokens[6].split(",");
-               Mascota m = new Mascota(Integer.parseInt(tokens[0]),tokens[1],tokens[2],LocalDate.parse(tokens[3]),tokens[4],Integer.parseInt(tokens[5]), new Dueño(Integer.parseInt(duenio[0]),duenio[1],duenio[2],duenio[3],duenio[4],duenio[5]));
+               Mascota m = new Mascota(Integer.parseInt(tokens[0]),tokens[1],tokens[2],LocalDate.parse(tokens[3]),tokens[4], new Dueño(Integer.parseInt(duenio[0]),duenio[1],duenio[2],duenio[3],duenio[4],duenio[5]));
                mascotas.add(m);
            }
            
@@ -188,7 +151,5 @@ public class Mascota {
        }
        return mascotas; 
     } 
-    
-        
-    
+      
 }
