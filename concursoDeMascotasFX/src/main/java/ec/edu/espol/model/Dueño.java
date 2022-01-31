@@ -32,71 +32,73 @@ public class Dueño {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.mascotas = mascotas;
+        this.mascotas = new ArrayList<>();
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApeillido() {
-        return apeillido;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public ArrayList<Mascota> getMascotas() {
-        return mascotas;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public String getApeillido() {
+        return apeillido;
+    }
+
     public void setApeillido(String apeillido) {
         this.apeillido = apeillido;
+    }
+
+    public String getDireccion() {
+        return direccion;
     }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public ArrayList<Mascota> getMascotas() {
+        return mascotas;
+    }
+
     public void setMascotas(ArrayList<Mascota> mascotas) {
         this.mascotas = mascotas;
     }
+
+    
     
         @Override
     public String toString() {
         return "Dueño{" + "id=" + id + ", nombre=" + nombre + ", apeillido=" + apeillido + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + "}"; //", mascotas=" + mascotas + '}';
     }
-        public static Dueño nextDueño(Scanner sc){
-        
+    
+    public static Dueño nextDueño(Scanner sc){        
         int idD = Util.nextID("Dueño.txt");
         System.out.println("Ingrese Nombre: ");
         String nameD = sc.nextLine();
@@ -108,15 +110,15 @@ public class Dueño {
         String phoneD = sc.nextLine();
         System.out.println("Ingrese e-mail: ");
         String emailD = sc.nextLine();
-        
-        
-        ArrayList<Mascota> listaM = new ArrayList<Mascota>();
+               
+        ArrayList<Mascota> listaM = new ArrayList<>();
         for(Mascota m: Mascota.readFile("Mascota.txt")){
-            if(idD==m.getIdDueño()){
+            if(idD==m.getDueño().getId())
                 listaM.add(m);
-        }
-        }
+        
+        }        
         Dueño d = new Dueño(idD,nameD,lnameD,direccD,phoneD,emailD);
+        d.setMascotas(listaM);
         d.saveFile("Dueño.txt");
         
         return d ;
@@ -140,7 +142,6 @@ public class Dueño {
         }    
   }
     public static ArrayList<Dueño> readFile(String file){
-
         ArrayList<Dueño> dueños = new ArrayList<>();
         try(BufferedReader bf =new BufferedReader(new FileReader(file))){
         String linea;
@@ -156,8 +157,7 @@ public class Dueño {
             System.out.println(e.getMessage());
         }
         return dueños;
-    }
-    
+    }    
     
     
 }
