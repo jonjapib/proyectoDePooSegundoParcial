@@ -2,7 +2,6 @@ ec\edu\espol\model\Evaluacion.class
 ec\edu\espol\util\Util.class
 module-info.class
 ec\edu\espol\model\Inscripcion.class
-ec\edu\espol\util\Menu.class
 ec\edu\espol\model\Criterio.class
 ec\edu\espol\model\Premio.class
 ec\edu\espol\model\MiembroJurado.class
@@ -10,3 +9,4 @@ ec\edu\espol\model\Concurso.class
 ec\edu\espol\model\Dueño.class
 ec\edu\espol\model\Mascota.class
 ec\edu\espol\concursodemascotasfx\App.class
+ec\edu\espol\controller\VentanaEvaluacionController.class
