@@ -7,7 +7,13 @@ package ec.edu.espol.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -16,6 +22,25 @@ import javafx.fxml.Initializable;
  */
 public class VentanaConcursoController implements Initializable {
 
+    @FXML
+    private BorderPane root;
+    @FXML
+    private Button btnRegresar;
+    @FXML
+    private TextField txtID;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private TextField txtTematica;
+    @FXML
+    private TextField txtCosto;
+    @FXML
+    private DatePicker dtPckInicio;
+    @FXML
+    private DatePicker dtPckFin;
+    @FXML
+    private DatePicker dtPckFecha;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +48,13 @@ public class VentanaConcursoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void registrar(ActionEvent event) {
+    }
+
+    @FXML
+    private void regresar(ActionEvent event) {
+    }
     
 }
