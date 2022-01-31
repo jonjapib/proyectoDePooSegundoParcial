@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ec.edu.espol.controller;
 
 import ec.edu.espol.concursodemascotasfx.App;
@@ -39,11 +35,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
-/**
- * FXML Controller class
- *
- * @author user
- */
+
 public class VentanaMascotaController implements Initializable {
 
     @FXML
@@ -111,8 +103,8 @@ public class VentanaMascotaController implements Initializable {
             url = Paths.get(ubicacion);            
             FileChooser fc = new FileChooser();
             fc.setTitle("Attach a file");
-            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (.jpg)", ".JPG");
-            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (.png)", ".PNG");
+            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
             fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
             selectedFile = fc.showOpenDialog(null);    
             this.nombreImagen = selectedFile.getName();
